@@ -51,8 +51,8 @@
       </div>
     </nav>
     <page-viewer
-      page-title="Page Title 1"
-      page-content="Page content 1"
+      :page-title="pages[activePage].pageTitle"
+      :page-content="pages[activePage].message"
     ></page-viewer>
     <script>
       let app = Vue.createApp({
