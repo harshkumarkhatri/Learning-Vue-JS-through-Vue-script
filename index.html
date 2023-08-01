@@ -44,10 +44,7 @@
           </li>
         </ul>
         <form class="d-flex">
-          <button
-            class="btn btn-primary"
-            @click.prevent="themeShade == 'light'?'dark':'light'"
-          >
+          <button class="btn btn-primary" @click.prevent="changeTheme()">
             Switch Color
           </button>
         </form>
@@ -95,6 +92,11 @@
               },
             ],
           };
+        },
+        methods: {
+          changeTheme() {
+            this.themeShade = this.themeShade == "light" ? "dark" : "light";
+          },
         },
         // computed: {
         //   navBarClass() {
