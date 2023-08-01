@@ -28,46 +28,60 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <ul class="navbar-nav mr-auto">
-          <li
-            v-for="(link,index) in links"
-            class="nav-item active"
-            :key="index"
-          >
+          <li v-for="(page,index) in pages" class="nav-item" :key="index">
             <a
               class="nav-link"
-              :href="link.urlPath"
-              :title="`This link taked to ${link.text} page`"
-              >{{link.text}}
+              :href="page.links[index].urlPath"
+              :title="`This link taked to ${page.links[index].text} page`"
+              @click.prevent="activePage = index"
+              >{{page.links[index].text}}
             </a>
           </li>
         </ul>
       </div>
     </nav>
     <div id="content" class="container">
-      <h1>{{ pageTitle }}</h1>
-      <p>{{ message }}</p>
+      <h1>{{ pages[activePage].pageTitle }}</h1>
+      <p>{{ pages[activePage].message }}</p>
     </div>
     <script>
       Vue.createApp({
         data() {
           return {
-            links: [
-              { text: "Home", urlPath: "index.html" },
-              { text: "About", urlPath: "about.html" },
-              { text: "Contact", urlPath: "contact.html" },
+            // Used for tracking the current selected page
+            activePage: 0,
+            pages: [
+              {
+                pageTitle: "Hello vue",
+                message: "Welcome to my first vue website",
+                links: [
+                  { text: "Home", urlPath: "index.html" },
+                  { text: "About", urlPath: "about.html" },
+                  { text: "Contact", urlPath: "contact.html" },
+                ],
+              },
+              {
+                pageTitle: "About Vue",
+                message: "Welcome to my first vue website",
+                links: [
+                  { text: "Home", urlPath: "index.html" },
+                  { text: "About", urlPath: "about.html" },
+                  { text: "Contact", urlPath: "contact.html" },
+                ],
+              },
+              {
+                pageTitle: "Contact Vue",
+                message: "Welcome to my first vue website",
+                links: [
+                  { text: "Home", urlPath: "index.html" },
+                  { text: "About", urlPath: "about.html" },
+                  { text: "Contact", urlPath: "contact.html" },
+                ],
+              },
             ],
           };
         },
-      }).mount("#topNavBar");
-      // From first project
-      Vue.createApp({
-        data() {
-          return {
-            pageTitle: "Hello vue",
-            message: "Welcome to my first vue website",
-          };
-        },
-      }).mount("#content");
+      }).mount("body");
     </script>
   </body>
 </html>
