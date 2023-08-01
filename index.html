@@ -13,11 +13,53 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
+    <nav id="topNavBar" class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <ul class="navbar-nav mr-auto">
+          <li
+            v-for="(link,index) in links"
+            class="nav-item active"
+            :key="index"
+          >
+            <a
+              class="nav-link"
+              :href="link.urlPath"
+              :title="`This link taked to ${link.text} page`"
+              >{{link.text}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div id="content" class="container">
       <h1>{{ pageTitle }}</h1>
       <p>{{ message }}</p>
     </div>
     <script>
+      Vue.createApp({
+        data() {
+          return {
+            links: [
+              { text: "Home", urlPath: "index.html" },
+              { text: "About", urlPath: "about.html" },
+              { text: "Contact", urlPath: "contact.html" },
+            ],
+          };
+        },
+      }).mount("#topNavBar");
+      // From first project
       Vue.createApp({
         data() {
           return {
