@@ -13,7 +13,11 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <nav id="topNavBar" class="navbar navbar-expand-lg" :class="navBarClass">
+    <nav
+      id="topNavBar"
+      class="navbar navbar-expand-lg"
+      :class="[navbarDark? 'navbar-dark':'navbar-light',navbarDark? 'bg-dark':'bg-light',]"
+    >
       <a class="navbar-brand" href="#">Navbar</a>
       <button
         class="navbar-toggler"
