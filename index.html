@@ -13,7 +13,11 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   </head>
   <body>
-    <nav id="topNavBar" class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      id="topNavBar"
+      class="navbar navbar-expand-lg"
+      :class="{'navbar-dark bg-dark':navbarDark,'navbar-light bg-light':!navbarDark}"
+    >
       <a class="navbar-brand" href="#">Navbar</a>
       <button
         class="navbar-toggler"
@@ -31,6 +35,7 @@
           <li v-for="(page,index) in pages" class="nav-item" :key="index">
             <a
               class="nav-link"
+              :class="{active:activePage == index}"
               :href="page.links[index].urlPath"
               :title="`This link taked to ${page.links[index].text} page`"
               @click.prevent="activePage = index"
@@ -38,6 +43,14 @@
             </a>
           </li>
         </ul>
+        <form class="d-flex">
+          <button
+            class="btn btn-primary"
+            @click.prevent="navbarDark = !navbarDark"
+          >
+            Switch Color
+          </button>
+        </form>
       </div>
     </nav>
     <div id="content" class="container">
@@ -50,6 +63,7 @@
           return {
             // Used for tracking the current selected page
             activePage: 0,
+            navbarDark: false,
             pages: [
               {
                 pageTitle: "Hello vue",
